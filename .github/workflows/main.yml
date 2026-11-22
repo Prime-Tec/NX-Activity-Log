@@ -53,8 +53,8 @@ jobs:
           sudo -n apt-get install -y pkg-config
 
           # Update the dkp-pacman database and install required cross packages
-          sudo dkp-pacman -Syu --noconfirm
-          sudo dkp-pacman -S --noconfirm switch-freetype switch-harfbuzz
+          sudo dkp-pacman -Syu --noconfirm || echo "dkp-pacman failed (server refused?), using packages already in the image"
+          sudo dkp-pacman -S --noconfirm switch-freetype switch-harfbuzz || echo "dkp-pacman failed (server refused?), using packages already in the image"
 
           # Ensure DEVKITPRO path
           export DEVKITPRO=/opt/devkitpro
