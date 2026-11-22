@@ -34,7 +34,8 @@ BUILD		:=	build
 INCLUDES	:=	include
 SOURCES		:=	source
 ROMFS		:=	romfs
-LIBS		:=	-lAether -lcurl -lnx `sdl2-config --libs` -lSDL2_ttf `freetype-config --libs` -lSDL2_gfx -lSDL2_image -lpng -ljpeg -lwebp -lSimpleIniParser -lharfbuzz
+PKGCONF	:=	$(DEVKITPRO)/portlibs/switch/bin/aarch64-none-elf-pkg-config
+LIBS		:=	-lAether -lSimpleIniParser $(shell $(PKGCONF) --libs SDL2_ttf SDL2_gfx SDL2_image libcurl) -lnx
 LIBDIRS		:=	$(PORTLIBS) $(LIBNX) $(CURDIR)/libs/Aether $(CURDIR)/libs/json $(CURDIR)/libs/SimpleIniParser
 FORWARDER	:=	$(ROMFS)/exefs.nsp
 

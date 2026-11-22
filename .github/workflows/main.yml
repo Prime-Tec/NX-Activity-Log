@@ -90,6 +90,7 @@ jobs:
           export PKG_CONFIG_PATH="/opt/devkitpro/libnx/lib/pkgconfig:/opt/devkitpro/devkitA64/lib/pkgconfig:${PKG_CONFIG_PATH:-}"
           # Append the C++ linker flags to ensure FreeType and HarfBuzz are linked.
           # The Makefile will pick up LDFLAGS or LIBS if it respects them; both are passed to be safe.
+          /opt/devkitpro/portlibs/switch/bin/aarch64-none-elf-pkg-config --libs SDL2_ttf SDL2_gfx SDL2_image libcurl || true
           make -j$(nproc)  # no LIBS/LDFLAGS override: it stripped -lnx from the Forwarder link
         shell: bash
 
